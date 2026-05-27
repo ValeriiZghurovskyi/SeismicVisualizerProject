@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seismic-visualizer"
+version = "0.1.0"
+description = "Desktop application for viewing and interpreting 3D seismic data"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "PyQt5>=5.15",
+    "numpy>=1.24",
+    "opencv-python>=4.8",
+    "scikit-image>=0.21",
+    "matplotlib>=3.7",
+    "pyvista>=0.43",
+    "pyvistaqt>=0.11",
+    "qdarkstyle>=3.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-qt>=4.2",
+    "ruff>=0.1",
+    "mypy>=1.7",
+]
+
+[project.scripts]
+seismic-visualizer = "seismic_visualizer.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ---------------------------------------------------------------------------
+# pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+# ---------------------------------------------------------------------------
+# mypy
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = false
+warn_unused_configs = true
+warn_unused_ignores = false
+ignore_missing_imports = true
+
+# Strict mode for the pure-Python layers
+[[tool.mypy.overrides]]
+module = [
+    "seismic_visualizer.domain",
+    "seismic_visualizer.domain.*",
+    "seismic_visualizer.application",
+    "seismic_visualizer.application.*",
+]
+strict = true
+ignore_missing_imports = true
+
+# Relaxed mode for UI and infrastructure (Qt / PyVista type stubs are sparse)
+[[tool.mypy.overrides]]
+module = [
+    "seismic_visualizer.ui",
+    "seismic_visualizer.ui.*",
+    "seismic_visualizer.infrastructure",
+    "seismic_visualizer.infrastructure.*",
+]
+ignore_missing_imports = true
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = ["skimage.*"]
+ignore_missing_imports = true
+follow_untyped_imports = true
