@@ -1,0 +1,68 @@
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.eggs/
+*.egg-info/
+dist/
+build/
+MANIFEST
+
+# ── Virtual environments ─────────────────────────────────────────────────────
+.env
+.venv
+venv/
+env/
+
+# ── Testing ──────────────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Type checking ─────────────────────────────────────────────────────────────
+.mypy_cache/
+
+# ── Linting ──────────────────────────────────────────────────────────────────
+.ruff_cache/
+
+# ── Runtime logs (created automatically, never committed) ────────────────────
+logs/
+
+# ── Distribution ─────────────────────────────────────────────────────────────
+*.exe
+
+# ── IDEs ─────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.claude/
+CLAUDE.md
+docs/
+
+# ── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Data (seismic cubes — large binary files, not for VCS) ───────────────────
+data/**/*.npz
+data/**/*.sgy
+data/**/*.segy
+
+# ── ML checkpoints and training artifacts ────────────────────────────────────
+ml/checkpoints/
+ml/checkpoints_faults/
+
+# ── Old/archived model versions ──────────────────────────────────────────────
+models/old/
+
+# ── Dev/analysis artifacts ────────────────────────────────────────────────────
+benchmarks/
+.pylintrc
+coverage.json
+pylint_out.txt
+assets/convert_icon.py

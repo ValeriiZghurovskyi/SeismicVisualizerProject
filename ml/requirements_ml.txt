@@ -1,0 +1,5 @@
+# ML training dependencies (separate from app runtime)
+torch>=2.1
+scipy>=1.11        # already in requirements.txt — listed for completeness
+onnx>=1.15         # optional: only needed for export verification
+onnxruntime>=1.17  # inference in OnnxTracker (already planned in app)
